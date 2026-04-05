@@ -1,7 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Pixel Test</title>
+
+<!-- TikTok Pixel -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;
+  var ttq=w[t]=w[t]||[];
+  ttq.methods=["page","track"];
+  ttq.setAndDefer=function(t,e){
+    t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}
+  };
+  for(var i=0;i<ttq.methods.length;i++){
+    ttq.setAndDefer(ttq,ttq.methods[i]);
+  }
+  ttq.load=function(e){
+    var i="https://analytics.tiktok.com/i18n/pixel/events.js";
+    var n=d.createElement("script");
+    n.async=!0;
+    n.src=i+"?sdkid="+e;
+    var s=d.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(n,s);
+  };
+  ttq.load('D79BP7JC77UA4NO2HOG0');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+
 </head>
 
 <body>
