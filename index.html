@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Loading...</title>
+<title>Game Loading...</title>
 
 <!-- TikTok Pixel -->
 <script>
@@ -18,40 +18,125 @@
   for(var i=0;i<ttq.methods.length;i++){
     ttq.setAndDefer(ttq,ttq.methods[i]);
   }
-  ttq.load('D79BP7JC77UA4NO2HOG0');   // ← 替换
+  ttq.load('D79BP7JC77UA4NO2HOG0');
   ttq.page();
 }(window, document, 'ttq');
 </script>
 
+<style>
+
+body{
+background:#0b0b0b;
+color:white;
+font-family:Arial;
+text-align:center;
+margin-top:80px;
+}
+
+.card{
+background:#1b1b1b;
+padding:30px;
+border-radius:15px;
+width:320px;
+margin:auto;
+box-shadow:0 0 25px rgba(0,255,150,0.4);
+}
+
+button{
+margin-top:20px;
+padding:15px;
+font-size:20px;
+border:none;
+border-radius:10px;
+background:#00ff99;
+color:black;
+cursor:pointer;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.07);}
+100%{transform:scale(1);}
+}
+
+.progress{
+width:100%;
+background:#333;
+border-radius:10px;
+margin-top:15px;
+}
+
+.bar{
+height:10px;
+width:0%;
+background:#00ff99;
+border-radius:10px;
+}
+
+</style>
+
 </head>
 
-<body style="text-align:center;font-family:sans-serif;margin-top:100px;">
+<body>
 
-<h2>Loading Game...</h2>
-<p>Please wait...</p>
+<div class="card">
 
-<button onclick="goOffer()" 
-style="padding:15px 30px;font-size:18px;cursor:pointer;">
-Start Game
-</button>
+<h2>🎮 Reward Loading...</h2>
+
+<p id="status">Checking eligibility...</p>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+<button onclick="goOffer()">ENTER GAME</button>
+
+</div>
 
 <script>
 
-// ⭐ 停留时间事件（兴趣用户）
+// ⭐ 停留用户（兴趣）
 setTimeout(function(){
-    ttq.track('ViewContent');
-    console.log("ViewContent Fired");
+ttq.track('ViewContent');
 },3000);
 
 
-// ⭐ 点击按钮 = 强意图用户
+// ⭐ 模拟加载过程（提高停留）
+let progress=0;
+let bar=document.getElementById("bar");
+let status=document.getElementById("status");
+
+let loader=setInterval(function(){
+
+progress+=10;
+bar.style.width=progress+"%";
+
+if(progress==40){
+status.innerText="Connecting server...";
+}
+
+if(progress==80){
+status.innerText="Bonus unlocked ✅";
+}
+
+if(progress>=100){
+clearInterval(loader);
+status.innerText="Ready to Start!";
+}
+
+},500);
+
+
+// ⭐ 强意图点击
 function goOffer(){
 
-    ttq.track('InitiateCheckout');
+ttq.track('InitiateCheckout');
 
-    setTimeout(function(){
-        window.location.href="https://www.csdad3999yhgfgre.com/?ch=255b169e17"; // ← 替换
-    },300);
+setTimeout(function(){
+window.location.href="https://www.csdad3999yhgfgre.com/?ch=255b169e17";
+},400);
+
 }
 
 </script>
