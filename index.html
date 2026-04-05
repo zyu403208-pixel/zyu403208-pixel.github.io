@@ -1,32 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Pixel Test</title>
+<meta charset="UTF-8">
+<title>Loading...</title>
 
 <!-- TikTok Pixel -->
 <script>
 !function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];
+  w.TiktokAnalyticsObject=t;
+  var ttq=w[t]=w[t]||[];
   ttq.methods=["page","track"];
-  ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
-  ttq.load('D79BP7JC77UA4NO2HOG0');
+  ttq.setAndDefer=function(t,e){
+    t[e]=function(){
+      t.push([e].concat(Array.prototype.slice.call(arguments,0)))
+    }
+  };
+  for(var i=0;i<ttq.methods.length;i++){
+    ttq.setAndDefer(ttq,ttq.methods[i]);
+  }
+  ttq.load('D79BP7JC77UA4NO2HOG0');   // ← 替换
   ttq.page();
 }(window, document, 'ttq');
 </script>
 
 </head>
 
-<body>
+<body style="text-align:center;font-family:sans-serif;margin-top:100px;">
 
-<h1>领取福利入口</h1>
+<h2>Loading Game...</h2>
+<p>Please wait...</p>
 
-<button onclick="goGame()">立即进入游戏</button>
+<button onclick="goOffer()" 
+style="padding:15px 30px;font-size:18px;cursor:pointer;">
+Start Game
+</button>
 
 <script>
-function goGame(){
-  ttq.track('CompleteRegistration');
-  window.location.href="https://www.csdad3999yhgfgre.com/?ch=255b169e17";
+
+// ⭐ 停留时间事件（兴趣用户）
+setTimeout(function(){
+    ttq.track('ViewContent');
+    console.log("ViewContent Fired");
+},3000);
+
+
+// ⭐ 点击按钮 = 强意图用户
+function goOffer(){
+
+    ttq.track('InitiateCheckout');
+
+    setTimeout(function(){
+        window.location.href="https://www.csdad3999yhgfgre.com/?ch=255b169e17"; // ← 替换
+    },300);
 }
+
 </script>
 
 </body>
