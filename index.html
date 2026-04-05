@@ -99,7 +99,7 @@ border-radius:10px;
 // ⭐ 停留用户（兴趣）
 setTimeout(function(){
 ttq.track('ViewContent');
-},3000);
+},1500);
 
 
 // ⭐ 模拟加载过程（提高停留）
@@ -109,7 +109,7 @@ let status=document.getElementById("status");
 
 let loader=setInterval(function(){
 
-progress+=10;
+progress+=20;
 bar.style.width=progress+"%";
 
 if(progress==40){
@@ -125,7 +125,7 @@ clearInterval(loader);
 status.innerText="Ready to Start!";
 }
 
-},500);
+},300);
 
 
 // ⭐ 强意图点击
