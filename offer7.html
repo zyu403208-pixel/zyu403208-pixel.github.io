@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Game Loading...</title>
+
+<!-- TikTok Pixel -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;
+  var ttq=w[t]=w[t]||[];
+  ttq.methods=["page","track"];
+  ttq.setAndDefer=function(t,e){
+    t[e]=function(){
+      t.push([e].concat(Array.prototype.slice.call(arguments,0)))
+    }
+  };
+  for(var i=0;i<ttq.methods.length;i++){
+    ttq.setAndDefer(ttq,ttq.methods[i]);
+  }
+  ttq.load('D7AD4RJC77U8MDEGF40G');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+
+<style>
+
+body{
+background:#0b0b0b;
+color:white;
+font-family:Arial;
+text-align:center;
+margin-top:80px;
+}
+
+.card{
+background:#1b1b1b;
+padding:30px;
+border-radius:15px;
+width:320px;
+margin:auto;
+box-shadow:0 0 25px rgba(0,255,150,0.4);
+}
+
+button{
+margin-top:20px;
+padding:15px;
+font-size:20px;
+border:none;
+border-radius:10px;
+background:#00ff99;
+color:black;
+cursor:pointer;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.07);}
+100%{transform:scale(1);}
+}
+
+.progress{
+width:100%;
+background:#333;
+border-radius:10px;
+margin-top:15px;
+}
+
+.bar{
+height:10px;
+width:0%;
+background:#00ff99;
+border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>🎮 Reward Loading...</h2>
+
+<p id="status">Checking eligibility...</p>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+<button onclick="goOffer()">ENTER GAME</button>
+
+</div>
+
+<script>
+
+// ⭐ 停留用户（兴趣）
+setTimeout(function(){
+ttq.track('ViewContent');
+},1000);
+
+
+// ⭐ 模拟加载过程（提高停留）
+let progress=0;
+let bar=document.getElementById("bar");
+let status=document.getElementById("status");
+
+let loader=setInterval(function(){
+
+progress+=20;
+bar.style.width=progress+"%";
+
+if(progress==40){
+status.innerText="Connecting server...";
+}
+
+if(progress==80){
+status.innerText="Bonus unlocked ✅";
+}
+
+if(progress>=100){
+clearInterval(loader);
+status.innerText="Ready to Start!";
+}
+
+},200);
+
+
+// ⭐ 强意图点击
+function goOffer(){
+
+ttq.track('InitiateCheckout');
+
+setTimeout(function(){
+window.location.href="https://i4x8.gzhyyrf.com?ch=67125&ttPixelId=D7AD4RJC77U8MDEGF40G";
+},400);
+
+}
+
+</script>
+
+</body>
+</html>
