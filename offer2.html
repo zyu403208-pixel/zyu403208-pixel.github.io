@@ -2,112 +2,140 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Loading...</title>
+<title>Game Loading...</title>
 
 <!-- TikTok Pixel -->
 <script>
 !function (w, d, t) {
-w.TiktokAnalyticsObject=t;
-var ttq=w[t]=w[t]||[];
-ttq.methods=["page","track"];
-ttq.setAndDefer=function(t,e){
-t[e]=function(){
-t.push([e].concat(Array.prototype.slice.call(arguments,0)))
-}
-};
-for(var i=0;i<ttq.methods.length;i++){
-ttq.setAndDefer(ttq,ttq.methods[i]);
-}
-ttq.load('你的PixelID');
-ttq.page();
+  w.TiktokAnalyticsObject=t;
+  var ttq=w[t]=w[t]||[];
+  ttq.methods=["page","track"];
+  ttq.setAndDefer=function(t,e){
+    t[e]=function(){
+      t.push([e].concat(Array.prototype.slice.call(arguments,0)))
+    }
+  };
+  for(var i=0;i<ttq.methods.length;i++){
+    ttq.setAndDefer(ttq,ttq.methods[i]);
+  }
+  ttq.load('D6RR833C77U3V2TBTM60');
+  ttq.page();
 }(window, document, 'ttq');
 </script>
 
 <style>
+
 body{
 background:#0b0b0b;
 color:white;
+font-family:Arial;
 text-align:center;
-font-family:sans-serif;
-margin-top:100px;
+margin-top:80px;
 }
+
+.card{
+background:#1b1b1b;
+padding:30px;
+border-radius:15px;
+width:320px;
+margin:auto;
+box-shadow:0 0 25px rgba(0,255,150,0.4);
+}
+
 button{
-padding:15px 30px;
+margin-top:20px;
+padding:15px;
 font-size:20px;
-background:#00ff99;
 border:none;
 border-radius:10px;
+background:#00ff99;
+color:black;
 cursor:pointer;
+animation:pulse 1.5s infinite;
 }
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.07);}
+100%{transform:scale(1);}
+}
+
+.progress{
+width:100%;
+background:#333;
+border-radius:10px;
+margin-top:15px;
+}
+
+.bar{
+height:10px;
+width:0%;
+background:#00ff99;
+border-radius:10px;
+}
+
 </style>
 
 </head>
 
 <body>
 
-<h2>🎮 Preparing Your Bonus...</h2>
+<div class="card">
+
+<h2>🎮 Reward Loading...</h2>
+
+<p id="status">Checking eligibility...</p>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
 <button onclick="goOffer()">ENTER GAME</button>
+
+</div>
 
 <script>
 
-// ⭐ 用户停留事件
+// ⭐ 停留用户（兴趣）
 setTimeout(function(){
 ttq.track('ViewContent');
-},1500);
+},1000);
 
 
-// ============================
-// ⭐ OFFER 管理区（只改这里）
-// ============================
+// ⭐ 模拟加载过程（提高停留）
+let progress=0;
+let bar=document.getElementById("bar");
+let status=document.getElementById("status");
 
-const OFFERS = {
+let loader=setInterval(function(){
 
-"JP":"https://甲方A.com",
-"BR":"https://甲方B.com",
-"ID":"https://甲方C.com",
+progress+=20;
+bar.style.width=progress+"%";
 
-"default":"https://备用Offer.com"
-
-};
-
-
-// ============================
-// ⭐ 自动识别国家
-// ============================
-
-async function getCountry(){
-
-try{
-
-let res = await fetch("https://ipapi.co/json/");
-let data = await res.json();
-
-return data.country;
-
-}catch(e){
-
-return "default";
-
+if(progress==40){
+status.innerText="Connecting server...";
 }
 
+if(progress==80){
+status.innerText="Bonus unlocked ✅";
 }
 
+if(progress>=100){
+clearInterval(loader);
+status.innerText="Ready to Start!";
+}
 
-// ============================
-// ⭐ 点击后跳转
-// ============================
+},200);
 
-async function goOffer(){
+
+// ⭐ 强意图点击
+function goOffer(){
 
 ttq.track('InitiateCheckout');
 
-let country = await getCountry();
-
-let url = OFFERS[country] || OFFERS["default"];
-
-setTimeout(()=>{
-window.location.href = url;
-},300);
+setTimeout(function(){
+window.location.href="https://www.5c6br23.live/2707011785/2707011785_content.html?index=PGHR";
+},400);
 
 }
 
