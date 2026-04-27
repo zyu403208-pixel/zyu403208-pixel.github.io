@@ -8,39 +8,84 @@
 
 <style>
 
+/* 🌈 渐变背景（不再纯白） */
 body{
 margin:0;
+height:100vh;
 overflow:hidden;
-background:white;
-font-family:"Microsoft YaHei", Arial;
+font-family:"Microsoft YaHei",Arial;
+background:linear-gradient(135deg,#1e3c72,#2a5298,#ff758c);
+background-size:300% 300%;
+animation:bgMove 12s infinite alternate;
 }
 
-/* 飘出的文字样式 */
+/* 背景呼吸移动 */
+@keyframes bgMove{
+0%{background-position:left;}
+100%{background-position:right;}
+}
+
+/* 中央弹窗 */
+.popup{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(15px);
+padding:50px;
+border-radius:25px;
+text-align:center;
+color:white;
+width:80%;
+max-width:520px;
+box-shadow:0 0 40px rgba(0,0,0,0.3);
+
+animation:popupBreath 3s infinite ease-in-out;
+}
+
+/* 弹窗呼吸 */
+@keyframes popupBreath{
+0%{transform:translate(-50%,-50%) scale(1);}
+50%{transform:translate(-50%,-50%) scale(1.03);}
+100%{transform:translate(-50%,-50%) scale(1);}
+}
+
+/* 飘出文字 */
 .tip{
 position:absolute;
 pointer-events:none;
-animation:floatUp 3s linear forwards;
+font-weight:bold;
+animation:floatUp 4s linear forwards;
 }
 
-/* 漂浮动画 */
+/* 飘动动画 */
 @keyframes floatUp{
-0%{
-opacity:0;
-transform:translateY(30px);
+0%{opacity:0;transform:translateY(40px);}
+20%{opacity:1;}
+100%{opacity:0;transform:translateY(-120px);}
 }
-30%{
-opacity:1;
+
+h1{
+font-size:40px;
+margin-bottom:15px;
 }
-100%{
-opacity:0;
-transform:translateY(-60px);
-}
+
+p{
+font-size:20px;
+opacity:0.9;
 }
 
 </style>
 </head>
 
 <body>
+
+<!-- ⭐ 大弹窗 -->
+<div class="popup">
+<h1>✨ 今日温馨提醒 ✨</h1>
+<p>愿你被世界温柔以待 ❤️</p>
+</div>
 
 <script>
 
@@ -53,15 +98,13 @@ const tips=[
 ];
 
 const colors=[
-'#FFB6C1','#FF69B4','#DA70D6','#EE82EE','#9370DB',
-'#7B68EE','#6495ED','#48D1CC','#00FFFF','#7FFFAA',
-'#98FB98','#ADFF2F','#FFFF00','#FFD700','#FFA500',
-'#FF8C00','#FF4500','#A52A2A','#8B4513'
+'#FFB6C1','#FFD700','#7FFFD4','#FF69B4',
+'#ADFF2F','#FFA07A','#00FFFF','#FFFFFF'
 ];
 
 function createTip(){
 
-for(let i=0;i<5;i++){
+for(let i=0;i<4;i++){
 
 let tip=document.createElement("div");
 tip.className="tip";
@@ -70,22 +113,21 @@ tip.innerText=tips[Math.floor(Math.random()*tips.length)];
 
 tip.style.color=colors[Math.floor(Math.random()*colors.length)];
 
-tip.style.fontSize=(12+Math.random()*20)+"px";
+tip.style.fontSize=(26+Math.random()*20)+"px";
 
+/* 随机位置 */
 tip.style.left=Math.random()*window.innerWidth+"px";
 tip.style.top=Math.random()*window.innerHeight+"px";
 
 document.body.appendChild(tip);
 
-setTimeout(()=>{
-tip.remove();
-},3000);
+setTimeout(()=>{tip.remove();},4000);
 
 }
 }
 
-// 每0.8秒生成一次
-setInterval(createTip,800);
+/* 持续生成文字 */
+setInterval(createTip,900);
 
 </script>
 
