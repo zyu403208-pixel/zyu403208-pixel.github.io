@@ -32,21 +32,35 @@ animation:bgMove 15s infinite alternate;
 /* ⭐ 背景定制文案（重点） */
 .bg-text{
 position:absolute;
-width:200%;
-height:200%;
-color:rgba(255,255,255,0.08);
-font-size:70px;
-font-weight:bold;
-line-height:120px;
-white-space:pre;
-transform:rotate(-20deg);
-animation:bgScroll 40s linear infinite;
-pointer-events:none;
-}
+width:220%;
+height:220%;
 
-@keyframes bgScroll{
-0%{transform:translate(-20%,-20%) rotate(-20deg);}
-100%{transform:translate(0%,0%) rotate(-20deg);}
+font-size:90px;
+font-weight:900;
+letter-spacing:6px;
+line-height:140px;
+
+white-space:pre;
+
+/* 半透明主体 */
+color:rgba(255,255,255,0.15);
+
+/* ⭐ 立体关键 */
+text-shadow:
+0 2px 4px rgba(0,0,0,0.2),
+0 6px 12px rgba(0,0,0,0.25),
+0 12px 30px rgba(0,0,0,0.35),
+0 0 20px rgba(255,255,255,0.25);
+
+/* ⭐ 3D透视 */
+transform:perspective(800px)
+rotateX(20deg)
+rotateZ(-18deg)
+translateZ(0);
+
+animation:bgScroll 35s linear infinite;
+
+pointer-events:none;
 }
 
 /* 前景漂浮文字 */
