@@ -5,19 +5,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Love Page</title>
+<title>Floating Text</title>
 
 <style>
 
 html,body{
 margin:0;
 padding:0;
-height:100%;
 overflow:hidden;
+height:100%;
 font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 }
 
-/* 🌈 背景 */
+/* 🌈 动态背景 */
 body{
 background:linear-gradient(160deg,#ff758c,#ff7eb3,#667eea);
 background-size:300% 300%;
@@ -29,55 +29,49 @@ animation:bgMove 12s infinite alternate;
 100%{background-position:right;}
 }
 
-/* 中央卡片 */
-.card{
+/* 中央提示 */
+.center{
 position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-width:85%;
-padding:30px;
-border-radius:25px;
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(20px);
-text-align:center;
 color:white;
-box-shadow:0 15px 50px rgba(0,0,0,.3);
-animation:breath 3s infinite;
+font-size:28px;
+text-align:center;
+pointer-events:none;
 }
 
-@keyframes breath{
-0%{transform:translate(-50%,-50%) scale(1);}
-50%{transform:translate(-50%,-50%) scale(1.04);}
-100%{transform:translate(-50%,-50%) scale(1);}
+/* ⭐ 满屏文字 */
+.word{
+position:absolute;
+white-space:nowrap;
+font-weight:bold;
+pointer-events:none;
+opacity:.9;
+
+animation:move linear infinite;
+}
+
+/* 随机移动 */
+@keyframes move{
+0%{transform:translate(0,0);}
+25%{transform:translate(80px,-120px);}
+50%{transform:translate(-60px,-240px);}
+75%{transform:translate(100px,-360px);}
+100%{transform:translate(-40px,-500px);}
 }
 
 /* ❤️ 爱心 */
 .heart{
 position:absolute;
-font-size:30px;
+font-size:28px;
 pointer-events:none;
-animation:heartFloat 1.6s ease-out forwards;
+animation:heartFloat 1.5s forwards;
 }
 
 @keyframes heartFloat{
 0%{opacity:1;transform:translate(-50%,-50%) scale(1);}
-100%{opacity:0;transform:translate(-50%,-180%) scale(2);}
-}
-
-/* ⭐ 高密度漂浮文字 */
-.tip{
-position:absolute;
-font-weight:bold;
-pointer-events:none;
-white-space:nowrap;
-animation:floatUp linear forwards;
-}
-
-@keyframes floatUp{
-0%{opacity:0;transform:translateY(60px);}
-20%{opacity:1;}
-100%{opacity:0;transform:translateY(-180px);}
+100%{opacity:0;transform:translate(-50%,-200%) scale(2);}
 }
 
 </style>
@@ -85,76 +79,77 @@ animation:floatUp linear forwards;
 
 <body>
 
-<div class="card">
-<h1>✨ 点击屏幕 ❤️ ✨</h1>
-<p>好运正在疯狂靠近你</p>
+<div class="center">
+✨ 点击屏幕 ❤️ ✨
 </div>
 
 <script>
 
-/* ❤️ 点击爱心 */
-function createHeart(x,y){
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerText="❤️";
-heart.style.left=x+"px";
-heart.style.top=y+"px";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),1600);
-}
-
-document.addEventListener("click",e=>{
-createHeart(e.clientX,e.clientY);
-});
-
-document.addEventListener("touchstart",e=>{
-let t=e.touches[0];
-createHeart(t.clientX,t.clientY);
-});
-
-/* ⭐ 超多漂浮文字 */
-
+/* ===== 文案池 ===== */
 const tips=[
-'好运来了','今天必幸运','机会就在眼前','你值得拥有',
-'好运加载中','惊喜马上出现','保持开心','一切顺利',
-'今天会赢','幸运降临','梦想实现中','别错过机会',
-'幸福正在发生','幸运正在选择你','下一秒会改变',
-'坚持就是胜利','好运暴涨中','奇迹正在发生'
+'好运来了','今天必幸运','奇迹发生中',
+'幸福正在靠近','梦想成真','好运暴涨',
+'你被幸运选中','惊喜马上出现',
+'保持开心','机会来了','改变正在发生',
+'下一秒不同','幸运加载中','别错过今天'
 ];
 
 const colors=[
 '#ffffff','#FFD700','#FFB6C1','#7FFFD4','#FFFACD'
 ];
 
-function createTip(){
+/* ⭐ 创建满屏文字 */
+function createWord(){
 
-let tip=document.createElement("div");
-tip.className="tip";
+let w=document.createElement("div");
+w.className="word";
 
-tip.innerText=tips[Math.floor(Math.random()*tips.length)];
+w.innerText=tips[Math.floor(Math.random()*tips.length)];
 
-tip.style.color=colors[Math.floor(Math.random()*colors.length)];
+w.style.color=colors[Math.floor(Math.random()*colors.length)];
 
-tip.style.fontSize=(20+Math.random()*20)+"px";
+w.style.fontSize=(16+Math.random()*24)+"px";
 
-/* 随机位置 */
-tip.style.left=Math.random()*window.innerWidth+"px";
-tip.style.top=(window.innerHeight+50)+"px";
+/* 随机屏幕位置 */
+w.style.left=Math.random()*window.innerWidth+"px";
+w.style.top=Math.random()*window.innerHeight+"px";
 
 /* 随机速度 */
-tip.style.animationDuration=(3+Math.random()*3)+"s";
+w.style.animationDuration=(6+Math.random()*6)+"s";
 
-document.body.appendChild(tip);
+document.body.appendChild(w);
 
-setTimeout(()=>tip.remove(),6000);
+/* 自动清理避免卡顿 */
+setTimeout(()=>w.remove(),12000);
 }
 
-/* 🔥 高频生成（关键） */
+/* 🔥 关键：持续填满屏幕 */
 setInterval(()=>{
-for(let i=0;i<6;i++){   // ← 数量控制
-createTip();
+for(let i=0;i<12;i++){
+createWord();
 }
-},300);
+},250);
+
+
+/* ❤️ 点击爱心 */
+function heart(x,y){
+let h=document.createElement("div");
+h.className="heart";
+h.innerText="❤️";
+h.style.left=x+"px";
+h.style.top=y+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),1500);
+}
+
+document.addEventListener("click",e=>{
+heart(e.clientX,e.clientY);
+});
+
+document.addEventListener("touchstart",e=>{
+let t=e.touches[0];
+heart(t.clientX,t.clientY);
+});
 
 </script>
 
