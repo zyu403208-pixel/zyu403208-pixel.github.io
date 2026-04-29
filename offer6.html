@@ -24,9 +24,22 @@ background-size:300% 300%;
 animation:bgMove 15s infinite alternate;
 }
 
-@keyframes bgMove{
-0%{background-position:left;}
-100%{background-position:right;}
+@keyframes bgScroll{
+0%{
+transform:
+perspective(800px)
+rotateX(20deg)
+rotateZ(-18deg)
+translate(-30%,-30%);
+}
+
+100%{
+transform:
+perspective(800px)
+rotateX(20deg)
+rotateZ(-18deg)
+translate(0%,0%);
+}
 }
 
 /* ⭐ 背景定制文案（重点） */
@@ -110,8 +123,13 @@ pointer-events:none;
 
 <!-- ⭐ 背景定制文案 -->
 <div class="bg-text">
-·素素专用·素素专用·素素专用·素素专用·素素专用·
-·素素专用·素素专用·素素专用·素素专用·素素专用·
+·素素专用·素素专用·
+·素素专用·素素专用·
+·素素专用·素素专用·
+·素素专用·素素专用·
+·素素专用·素素专用·
+·素素专用·素素专用·
+·素素专用·素素专用·
 </div>
 
 <div class="center">
